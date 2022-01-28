@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+<%
+	int i = (int)(Math.random() * 10 + 1);
+	out.println("<h1>랜덤 구구단" + i + "단 </h1>");
+	for(int j = 1; j < 10; j++){
+		out.println(i + " * " + j + " = " + (i * j) + "<br/>");
+	}
+%>
+<%!
+ public int total = 0;
+%>
+	
+</body>
+</html>
