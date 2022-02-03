@@ -13,7 +13,7 @@
 	// int randomNumber()를 선언해 주세요.
 	int randomNumber(){
 		// 정수 1~10까지 발생 시켜서 리턴 하도록 로직 작성
-		int result = (int)(Math.random() * 10 + 1);
+		int result = (int)(Math.random() * 10) + 1;
 		return result;
 	}
 	
