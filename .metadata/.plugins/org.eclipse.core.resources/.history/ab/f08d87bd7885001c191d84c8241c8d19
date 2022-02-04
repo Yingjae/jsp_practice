@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String USA = request.getParameter("spot");
+	String Japan = request.getParameter("spot");
+	String Austrailia = request.getParameter("spot");
+	String Canada = request.getParameter("spot");
+	
+	if(USA.equals("USA")){
+		response.sendRedirect("travel_USA.jsp");
+	}else if(Japan.equals("Japan")){
+		response.sendRedirect("travel_Japan.jsp");
+	}else if(Austrailia.equals("Austrailia")){
+		response.sendRedirect("travel_Austrailia.jsp");
+	}else{
+		response.sendRedirect("travel_Canada.jsp");
+	}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
