@@ -1,2 +1,4 @@
 1644201491205	Rename resource 'cookie_welcom.jsp'
 1644279591366	Rename resource 'session_check.jsp'
+1644371149809	Move 'mysql-connector-java-8.0.26.jar' to 'lib'
+1644372366838	Copy file
