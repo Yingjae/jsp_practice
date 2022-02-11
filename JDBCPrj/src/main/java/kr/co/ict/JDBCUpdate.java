@@ -64,6 +64,7 @@ public class JDBCUpdate {
 												"', uname ='" +uName +
 												"', uemail = '" + uEmail +
 												"' 	WHERE uid='" + uId + "'");
+			scan.close();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

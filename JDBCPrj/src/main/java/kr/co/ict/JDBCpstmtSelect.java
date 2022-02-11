@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.Scanner;
 
 public class JDBCpstmtSelect {
@@ -45,7 +44,7 @@ public class JDBCpstmtSelect {
 				System.out.println(rs.getString(3));
 				System.out.println(rs.getString(4));
 			}
-
+			scan.close();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
