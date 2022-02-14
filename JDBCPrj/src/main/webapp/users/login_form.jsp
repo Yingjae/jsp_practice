@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String sId = (String)session.getAttribute("session_id");
+	if(sId != null){
+		response.sendRedirect("login_welcome.jsp");
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,5 +20,6 @@
 		<input type="password" name="fpw" placeholder="비밀번호" /><br/>
 		<input type="submit" value="로그인" /><input type="reset" value="초기화" />
 	</form>
+	<a href="login_form.jsp">메인화면으로 돌아가기</a>
 </body>
 </html>
