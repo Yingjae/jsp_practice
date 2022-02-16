@@ -20,9 +20,11 @@
 		// 1. DB종류 지정 및 연결
  		Class.forName(dbType);
 		Connection con = DriverManager.getConnection(dbUrl, dbId, dbPw);
+		
  		// 2. 쿼리문 작성 및 pstmt 생성
  		String sql = "INSERT INTO userinfo VALUES (?, ?, ?, ?)";
  		PreparedStatement pstmt = con.prepareStatement(sql);
+ 		
  		// 3. pstmt 실행으로 사용자가 보낸 폼 데이터 DB에 저장
  		// ?에 값 세팅하고 쿼리문 실행
  		// name id pw email 순으로
