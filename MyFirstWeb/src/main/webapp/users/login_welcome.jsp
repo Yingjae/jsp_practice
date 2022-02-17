@@ -4,7 +4,13 @@
 	// 세션에 저장된 정보를 확인해
 	// ID님 접속을 환영합니다. 라고 안내해주는 화면을 만들어보겠습니다.
 	// 추후 여기에는 탈퇴하기, 가입하기, 정보수정하기 버튼이 추가 될 예정입니다.
+	
 	String sId = (String)session.getAttribute("session_id");
+	// session에 아이디가 남아있는 과정 문제풀이
+	// form데이터(http) -> 자바 변수로 변환 -> 쿼리문에 조합 -> DB에 전달
+	// -> DB에서 받아온 데이터로 로그인 처리 -> session.serAttribute로 세션영역에 로그인 정보 저장
+	// -> 이후 저장된 데이터를 session.getAttribute를 이용해 정보 불러오기
+	
 	// 로그인이 안 된 사용자가 여기로 접근하면 로그인 페이지로 보내주세요.
 	if(sId == null){
 		response.sendRedirect("login_form.jsp");
