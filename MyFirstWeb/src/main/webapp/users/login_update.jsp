@@ -55,7 +55,7 @@
 	
 	// DAO를 활용한 로직으로 전환
 	// 1. DAO 생성
-	UserDAO dao = new UserDAO();
+	UserDAO dao = UserDAO.getInstance();
 	// 2. DAO 내부에서 회원 1명의 정보만 가져오는 getUserData 호출
 	UserVO user = dao.getUserData(sId); // sId는 이미 세션에서 얻어왔습니다.
 	// 3. 얻어온 user 내용물 확인
@@ -78,7 +78,7 @@
 	<form action="update_check.jsp" method="post">
 		<input type="password" name="fpw" placeholder="비밀번호"/><br/>
 		<input type = "text" name = "fname" placeholder="이름" value="<%=user.getuName()%>" required/><br>
-      <input type = "email" name = "femail" placeholder="이메일" value="<%=user.getuEmail() %>" required/><br>
+      	<input type = "email" name = "femail" placeholder="이메일" value="<%=user.getuEmail() %>" required/><br>
 		<input type="submit" value="수정하기">
 		<input type="reset" value="초기화">
 	</form>

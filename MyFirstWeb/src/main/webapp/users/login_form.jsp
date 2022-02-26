@@ -18,8 +18,12 @@
 	<form action="login_check.jsp" method="post">
 		<input type="text" name="fid" placeholder="아이디" /><br/>
 		<input type="password" name="fpw" placeholder="비밀번호" /><br/>
-		<input type="submit" value="로그인" /><input type="reset" value="초기화" />
+		<input type="submit" value="로그인" />
+		<input type="reset" value="초기화" /><br/>
 	</form>
-	<a href="login_form.jsp">메인화면으로 돌아가기</a>
+	<a href="join_form.jsp">회원가입</a>
 </body>
 </html>
+
+
+

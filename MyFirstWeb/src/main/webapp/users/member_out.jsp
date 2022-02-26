@@ -1,3 +1,4 @@
+<%@page import="kr.co.ict.UserDAO"%>
 <%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,6 +15,7 @@
 	String sId = (String)session.getAttribute("session_id");
 	
 	// 1. DB연결용 변수 선언
+	/*
 	String dbType = "com.mysql.cj.jdbc.Driver";
 	String dbUrl = "jdbc:mysql://localhost:3306/jdbcprac1";
 	String dbId = "root";
@@ -41,6 +43,14 @@
 		session.invalidate();
 		response.sendRedirect("login_form.jsp");
 	}
+	*/
+	// 삭제로직 구현
+	// DAO 생성
+	UserDAO dao = UserDAO.getInstance();
+	// DELETE 로직 호출
+	dao.deleteUser(sId);
+	// 삭제가 성공했건 실패했건 로그아웃에 접근한 자체로 세션 파기
+	session.invalidate();
 %>
 <!DOCTYPE html>
 <html>
@@ -49,6 +59,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1><%= sId %>회원의 탈퇴가 완료되었습니다.</h1><br/>
+    <a href="login_form.jsp">메인화면으로 돌아가기</a>
 </body>
 </html>

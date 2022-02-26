@@ -1,16 +1,22 @@
+<%@page import="kr.co.ict.UserVO"%>
+<%@page import="kr.co.ict.UserDAO"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	//0. 한글 깨지는 문제 해결
+	request.setCharacterEncoding("utf-8");
 	// 1. form에서 보낸 비번, 이름, 이메일 변수로 저장해주세요.
  	String fPw = request.getParameter("fpw");
  	String fName = request.getParameter("fname");
  	String fEmail = request.getParameter("femail");
 	// 2. session에 저장된 아이디를 변수로 저장해주세요.
 	String sId = (String)session.getAttribute("session_id");
+	
 	// 3. DB 접속정보 변수로 관리
+	/*
 	String dbType = "com.mysql.cj.jdbc.Driver";
 	String dbUrl = "jdbc:mysql://localhost:3306/jdbcprac1";
 	String dbId = "root";
@@ -38,8 +44,15 @@
 	} finally{
 		
 	}
-		// 7. body 태그에 XXX회원의 정보가 수정되었습니다. 라고 안내
-		// 웰컴페이지로 돌아갈 수 있는 링크
+	*/
+	// 위쪽 3~6 코드를 DAO로 대체해서 처리해주세요.
+	// DAO 생성
+	UserDAO dao = UserDAO.getInstance();
+	// update로직 호출
+	dao.updateCheck(sId, fPw, fName, fEmail); // return void
+	
+	// 7. body 태그에 XXX회원의 정보가 수정되었습니다. 라고 안내
+	// 웰컴페이지로 돌아갈 수 있는 링크
 	
 %>    
 <!DOCTYPE html>
