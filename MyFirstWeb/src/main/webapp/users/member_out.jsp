@@ -11,7 +11,7 @@
 	
 	// 0. session_id 조회해서 로그인 사용자가 접근하는지 여부 체크
 	// 폼에서 데이터를 가져오는 경우(request.getParameter())
-	// 세션에서 자겨오는 경우(session.getAttribute())
+	// 세션에서 가져오는 경우(session.getAttribute())
 	String sId = (String)session.getAttribute("session_id");
 	
 	// 1. DB연결용 변수 선언

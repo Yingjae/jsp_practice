@@ -39,6 +39,7 @@ public class BoardListServlet extends HttpServlet {
         // 2. BoardDAO의 getAllBoardList() 호출해 전체 게시글 정보 받아오기
         List<BoardVO> boardList = dao.getAllBoardList();  
         // 3. request.setAttribute로 바인딩하기
+        // List<BoardVO> boardList를 바로 바인딩 할 수도 있습니다.
         request.setAttribute("boardList",boardList);
         // 4. /board/boardlist.jsp로 포워딩하기
         // 포워딩 후 el로 바인딩한 자료를 화면에 뿌려보세요.
