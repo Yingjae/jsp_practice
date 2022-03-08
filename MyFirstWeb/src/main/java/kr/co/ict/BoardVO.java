@@ -37,10 +37,10 @@ public class BoardVO {
    public void setTitle(String title) {
       this.title = title;
    }
-   public String getContents() {
+   public String getContent() {
       return content;
    }
-   public void setContents(String content) {
+   public void setContent(String content) {
       this.content = content;
    }
    public String getWriter() {
