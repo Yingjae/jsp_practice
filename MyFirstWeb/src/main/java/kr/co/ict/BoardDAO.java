@@ -2,7 +2,6 @@ package kr.co.ict;
 
    import java.sql.Connection;
    import java.sql.Date;
-   import java.sql.DriverManager;
    import java.sql.PreparedStatement;
    import java.sql.ResultSet;
    import java.sql.SQLException;
@@ -173,4 +172,63 @@ package kr.co.ict;
           }
           return board;
       }	  
+      
+      // DeleteBoard 메서드를 만들어서 삭제처리가 되게 하고,
+      // 서블릿에서 해당 메서드를 호출해 삭제버튼을 누르면 DB에서 해당 번호 글이 삭제되게 하기
+      public void getDeleteBoard(int boardNum) {
+    	  Connection con = null;
+          PreparedStatement pstmt = null;
+          
+          try {
+        	  con = ds.getConnection();
+        	  
+        	  String sql = "DELETE FROM boardTbl WHERE board_num = ?";
+        	  
+        	  pstmt = con.prepareStatement(sql);
+        	  pstmt.setInt(1, boardNum);
+        	  
+        	  pstmt.executeUpdate();
+        	  
+          } catch(Exception e) {
+        	  e.printStackTrace();
+          } finally {
+        	  try {
+        		  con.close();
+        		  pstmt.close();
+        	  }catch(Exception se) {
+        		  se.printStackTrace();
+        	  }	  
+          }
+      }
+      
+      // update도 select가 아니므로 void리턴입니다.
+      public void boardUpdate(String title, String content, int bNum) {
+    	  // Connection, PreparedStatements, ResultSet 선언하기
+    	  Connection con = null;
+          PreparedStatement pstmt = null;
+          
+          try {
+        	  con = ds.getConnection();
+        	  
+        	  String sql = "Update boardTbl SET title=?, content=?, mdate=now() WHERE board_num=?";
+        	  pstmt = con.prepareStatement(sql);
+        	  // 실행 전 상단 쿼리문 ? 채워넣기
+        	  pstmt.setString(1, title );
+        	  pstmt.setString(2, content);
+        	  pstmt.setInt(3, bNum);
+        	  
+        	  //실행하기
+        	  pstmt.executeUpdate();        	  
+          } catch(Exception e) {
+        	  e.printStackTrace();
+          } finally {
+        	  try {
+        		  con.close();
+        		  pstmt.close();
+        	  }catch(Exception se) {
+        		  se.printStackTrace();
+        	  }	  
+          }
+      }
+      
 }
