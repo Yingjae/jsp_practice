@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.ict.BoardDAO;
 import kr.co.ict.BoardVO;
 
-public class BoardDetailservice implements IBoardService {
+public class BoardDetailService implements IBoardService {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {

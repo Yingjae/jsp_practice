@@ -26,4 +26,9 @@
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.IBoardService"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardListService"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardInsertService"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardDeleteService"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardUpdateFormService"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardUpdateService"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardDetailService"/>
 </qualifiedTypeNameHistroy>
