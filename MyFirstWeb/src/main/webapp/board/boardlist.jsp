@@ -35,6 +35,9 @@
          </c:forEach>
       </tbody>
    </table>
-   <a href="http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
+   <c:if test="${sId ne null }"> 
+   <!-- not empty sId, sessionScope.session_id ne null 구문으로 사용 가능  -->
+		<a href="http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
+   </c:if>
 </body>
 </html>
