@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<c:if test="${sId eq null }">
+		<% response.sendRedirect("http://localhost:8181/MyFirstWeb/boardList.do"); %>
+	</c:if>
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- 로그인 안한 사람이 주소를 통해 비정상적인 접근을 시도할때 로그인여부를 판단해 차단하는 방법 -->
-	<c:if test="${sessionScope.session_id eq null }">
-		<script>
-			location.href="http://localhost:8181/MyFirstWeb/boardList.do";
-		</script>
-	</c:if>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>

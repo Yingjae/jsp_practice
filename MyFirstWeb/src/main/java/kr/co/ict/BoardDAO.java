@@ -48,20 +48,25 @@ package kr.co.ict;
       // boardTbl에 맞춰서 처리하기 위해 UserVO를 사용하는 부분을 전부 BoardVO로 수정해줍니다.
       
       // 3-2. 쿼리문을 boardTbl 테이블에서 데이터를 가져오도록 rs에서 데이터 가져오는 부분을 수정합니다.
-      public List<BoardVO> getAllBoardList(){
+      // 페이징 처리를 위해 페이지 번호를 추가로 입력 받습니다.
+      public List<BoardVO> getAllBoardList(int pageNum){
          // try블럭 진입 전 Connection, PreparedStatement, ResultSet 선언
          Connection con = null;
          PreparedStatement pstmt = null;
          ResultSet rs = null;
+         
          // try블럭 진입 전에 ArrayList 선언
          List<BoardVO> boardList = new ArrayList<>();
          try {
             // Connection, PreparedStatement, ResultSet을 선언합니다.
             con = ds.getConnection();
+            int limitNum = ((pageNum - 1) * 10);
             
             // SELECT * FROM userinfo 실행 및 ResultSet에 저장
-            String sql = "SELECT * FROM boardTbl ORDER BY board_num DESC";
+            // LIMIT 뒤쪽 숫자가 페이지당 보여줄 글 개수이므로 DTO의 상수와 함께 고쳐야함
+            String sql = "SELECT * FROM boardTbl ORDER BY board_num DESC limit ?, 20";
             pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, limitNum);
             
             rs = pstmt.executeQuery();
 
@@ -157,6 +162,7 @@ package kr.co.ict;
                   int hit = rs.getInt("hit"); 
                   
                   board = new BoardVO(boardNum, title, content, writer, bDate, mDate, hit);
+                  upHit(boardNum);
         	  }
         	  
           } catch(Exception e) {
@@ -231,4 +237,61 @@ package kr.co.ict;
           }
       }
       
+      // 서비스가 아닌 getBoardDetail 실행시 자동으로 같이 실행 되도록 처리 하겠습니다.
+      // 글 제목을 클릭할 때 마다 조회수를 상승 시키는 메서드
+      public void upHit(int bId) {
+
+		  String sql = "UPDATE boardTbl SET hit = (hit + 1) WHERE board_num=?";
+    	  // System.out.println("현재 조회된 글 번호 : " + bId);
+    	  
+    	  Connection con = null;
+    	  PreparedStatement pstmt = null;
+    	  try {
+    		  con = ds.getConnection();
+    		  
+    		  pstmt = con.prepareStatement(sql);
+    		  pstmt.setInt(1, bId);
+    		  pstmt.executeUpdate();
+    	  }catch(Exception e) {
+    		  e.printStackTrace();
+    	  }finally {
+    		  try {
+    			  con.close();
+    			  pstmt.close();
+    		  }catch(SQLException e) {
+    			  e.printStackTrace();
+    		  }
+    	  }   	  
+      }
+      
+      // 페이징 처리를 위해 글 전체 개수를 구해오겠습니다.
+      // 하단에 public int getPageNum()을 작성해주세요.
+      // 쿼리문은 SELECT COUNT(*) FROM boardTbl; 입니다.
+      
+      public int getPageNum() {
+    	  Connection con = null;
+          PreparedStatement pstmt = null;
+    	  ResultSet rs = null;
+    	  int pageNum = 0;  	          
+    	  try {
+        	  con = ds.getConnection();
+        	  String sql="SELECT COUNT(*) FROM boardTbl";
+        	  pstmt = con.prepareStatement(sql);
+        	  
+        	  if(rs.next()) {
+        		  pageNum = rs.getInt(1);
+        	  }
+          } catch(Exception e) {
+        	  e.printStackTrace();
+          } finally {
+        	  try {
+        		  con.close();
+        		  pstmt.close();
+        		  rs.close();
+        	  }catch(SQLException e) {
+        		  e.printStackTrace();
+        	  }	  
+          }
+          return pageNum;
+      }
 }

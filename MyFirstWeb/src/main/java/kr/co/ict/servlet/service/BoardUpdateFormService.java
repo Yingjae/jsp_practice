@@ -12,7 +12,10 @@ public class BoardUpdateFormService implements IBoardService {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// BoardFormServlet의 내부 로직을 포워딩 전까지 가져옵니다.
 		String strbNum = request.getParameter("board_num");
-		int bNum = Integer.parseInt(strbNum);
+		int bNum = 0;
+		if(strbNum != null) {
+			bNum = Integer.parseInt(strbNum);
+		}
 		// System.out.println("수정 페이지 진입 : " + bNum);
 		
 		// 수정버튼을 눌렀을 때 글 제목, 글 내용, 글쓴이 등이 기입된 상태로 수정창이 열려야 함

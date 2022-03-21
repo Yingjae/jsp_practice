@@ -39,5 +39,8 @@
    <!-- not empty sId, sessionScope.session_id ne null 구문으로 사용 가능  -->
 		<a href="http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
    </c:if>
+   <c:if test="${sessionScope.session_id ne null }">
+   		<a href="http://localhost:8181/MyFirstWeb/insert"
+   </c:if>
 </body>
 </html>
