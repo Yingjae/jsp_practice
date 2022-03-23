@@ -40,7 +40,25 @@
 		<a href="http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
    </c:if>
    <c:if test="${sessionScope.session_id ne null }">
-   		<a href="http://localhost:8181/MyFirstWeb/insert"
+   		<a href="http://localhost:8181/MyFirstWeb/insertForm.do">글쓰기</a>
    </c:if>
+	
+	<!-- document의 pagination 파트를 보고 1부터 10까지 나열해보세요. -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+	<li class="page-item ${dto.startPage eq 1 ? 'disabled' : ''}">
+		<a class="page-link" href="http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${dto.startPage - 1 }">&laquo;</a></li>
+	<c:forEach var="pageIndex" begin="${dto.startPage }" end="${dto.endPage }">
+    <li class="page-item"><a class="page-link" href="http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${pageIndex }">${pageIndex }</a></li>
+    </c:forEach>
+    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+  </ul>
+</nav>
+	<hr/>
+	<h3>부트스트랩 없이 만들기</h3>
+	
+	<c:forEach var="pageIndex" begin="${dto.startPage }" end="${dto.endPage }">
+		<a href="http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${pageIndex }">[${pageIndex }]</a>
+	</c:forEach>
 </body>
 </html>

@@ -89,6 +89,14 @@ public class BoardDTO {
 	public int getEndPage() {
 		return endPage;
 	}
+	
+	// ${dto.currentPage}와 같은 형태로 자료
+	// currentPage에 대한 getter를 아래에 상
+	public int getCurrentPage() {
+		return currentPage;
+	}
+	
+	
 	// 디버깅을 위한 toString
 	@Override
 	public String toString() {

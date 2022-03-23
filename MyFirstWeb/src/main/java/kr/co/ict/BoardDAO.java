@@ -54,20 +54,21 @@ package kr.co.ict;
          Connection con = null;
          PreparedStatement pstmt = null;
          ResultSet rs = null;
-         
+         // 페이징 처리시 페이지당 글 갯수
+         final int BOARD_COUNT = 10;
          // try블럭 진입 전에 ArrayList 선언
          List<BoardVO> boardList = new ArrayList<>();
          try {
             // Connection, PreparedStatement, ResultSet을 선언합니다.
             con = ds.getConnection();
-            int limitNum = ((pageNum - 1) * 10);
+            int limitNum = ((pageNum - 1) * BOARD_COUNT);
             
             // SELECT * FROM userinfo 실행 및 ResultSet에 저장
             // LIMIT 뒤쪽 숫자가 페이지당 보여줄 글 개수이므로 DTO의 상수와 함께 고쳐야함
-            String sql = "SELECT * FROM boardTbl ORDER BY board_num DESC limit ?, 20";
+            String sql = "SELECT * FROM boardTbl ORDER BY board_num DESC limit ?, ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, limitNum);
-            
+            pstmt.setInt(2, BOARD_COUNT);
             rs = pstmt.executeQuery();
 
             // BoardVO ArrayList에 rs에 든 모든 자료를 저장해주세요.
